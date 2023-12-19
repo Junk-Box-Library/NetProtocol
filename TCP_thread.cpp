@@ -122,11 +122,11 @@ UINT  ntpl_web_proxy(LPVOID pntprm)
 	keep = TRUE;
 
 	while (recv_wait(netparam.nsock, btm) && keep && *(netparam.p_state)==RELAY_EXEC) {
-		cc = recv_http_header(netparam.nsock, &pl, &len, NULL, &state);
+		cc = recv_http_header(netparam.nsock, &pl, &len, tmout, NULL, &state);
 		if (cc<=0) break;
 		if (pl==NULL) break;
 
-		com = http_proxy_header_anlys(pl, &server, &sport, &btm, &keep);
+		com = http_proxy_header_analyze(pl, &server, &sport, &btm, &keep);
 		if (btm==0) btm = tmout;
 		else		btm = Min(btm, 60);
 
@@ -288,7 +288,7 @@ int  ntpl_www2browser_relay(NetParam netparam, int btm, int wtm, int keep)
 	tList* lst;
 
 	if (!recv_wait(netparam.csock, wtm)) return JBXL_NET_RECV_TIMEOUT;
-	cc = recv_http_header(netparam.csock, &pl, &len, NULL, &state);
+	cc = recv_http_header(netparam.csock, &pl, &len, wtm, NULL, &state);
 	if (cc<=0) {
 		if (pl!=NULL) del_tList(&pl);
 		return cc;
