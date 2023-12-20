@@ -3,62 +3,49 @@
 
 #pragma once
 
-
 #include   <Afxmt.h> 
-
 #include  "BufferRing.h"
 
-
-
 #define  MAXBUFFERLINE 30000
-
-
 
 class  CNetProtocolView;
 class  CNetProtocolApp;
 
-
-
 class CNetProtocolDoc : public CDocument
 {
 protected: // シリアル化からのみ作成します。
-	CNetProtocolDoc();
-	DECLARE_DYNCREATE(CNetProtocolDoc)
+    CNetProtocolDoc();
+    DECLARE_DYNCREATE(CNetProtocolDoc)
 
 public:
-	virtual BOOL OnNewDocument();
-	virtual void Serialize(CArchive& ar);
-	CNetProtocolApp* pApp;
-
+    virtual BOOL OnNewDocument();
+    virtual void Serialize(CArchive& ar);
+    CNetProtocolApp* pApp;
 
 public:
-	virtual ~CNetProtocolDoc();
+    virtual ~CNetProtocolDoc();
 
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+    virtual void AssertValid() const;
+    virtual void Dump(CDumpContext& dc) const;
 #endif
-
 
 // 生成された、メッセージ割り当て関数
 protected:
-	DECLARE_MESSAGE_MAP()
-
-
-public:
-	CString				save_fname;
-	CBufferRing*		bufferRing;
-	CCriticalSection	criticalKey;
-
+    DECLARE_MESSAGE_MAP()
 
 public:
-	void		free(void);
-	void		clear(void);
-	int			writeLogFile(void);
-	CString		easyGetSaveFileName(LPCSTR title, HWND hWnd);
+    CString             save_fname;
+    CBufferRing*        bufferRing;
+    CCriticalSection    criticalKey;
 
-	void		DeleteContents(void);
-	CNetProtocolView*	GetView(void);
+public:
+    void        free(void);
+    void        clear(void);
+    int         writeLogFile(void);
+    CString     easyGetSaveFileName(LPCSTR title, HWND hWnd);
+
+    void        DeleteContents(void);
+    CNetProtocolView*  GetView(void);
 };
-
 

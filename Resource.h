@@ -8,7 +8,7 @@
 #define IDD_NETSETTING_DIALOG           130
 #define IDC_RADIO_THROW                 1000
 #define IDC_RADIO_PROXY                 1001
-#define IDC_EDIT_LPORT					1002
+#define IDC_EDIT_LPORT                  1002
 #define IDC_EDIT_RHOST                  1003
 #define IDC_EDIT_RPORT                  1004
 #define IDC_CHECK_BINHEX_MODE           1005
@@ -16,8 +16,8 @@
 #define ID_NET_START                    9001
 #define ID_NET_STOP                     9002
 #define ID_NET_SETTING                  9003
-#define ID_LOG_SAVE						9004
-#define ID_LOG_SAVE_AS					9005
+#define ID_LOG_SAVE                     9004
+#define ID_LOG_SAVE_AS                  9005
 #define ID_LOG_CLEAR                    9006
 
 
