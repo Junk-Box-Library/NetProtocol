@@ -13,71 +13,71 @@ class  CNetProtocolApp;
 class CNetProtocolView : public CScrollView
 {
 protected: // シリアル化からのみ作成します。
-    .gCNetProtocolView();
-    .gDECLARE_DYNCREATE(CNetProtocolView)
+    CNetProtocolView();
+    DECLARE_DYNCREATE(CNetProtocolView)
 
 public:
-    .gCNetProtocolDoc* GetDocument() const;
-    .gCNetProtocolApp* pApp;
+    CNetProtocolDoc* GetDocument() const;
+    CNetProtocolApp* pApp;
 
 // オーバーライド
 public:
-    .gvirtual  BOOL    PreCreateWindow(CREATESTRUCT& cs);
+    virtual  BOOL    PreCreateWindow(CREATESTRUCT& cs);
 
 protected:
-    .gvirtual  void    OnInitialUpdate(); // 構築後に初めて呼び出されます。
-    .gvirtual  BOOL    OnPreparePrinting(CPrintInfo* pInfo);
-    .gvirtual  void    OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
-    .gvirtual  void    OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
+    virtual  void    OnInitialUpdate(); // 構築後に初めて呼び出されます。
+    virtual  BOOL    OnPreparePrinting(CPrintInfo* pInfo);
+    virtual  void    OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
+    virtual  void    OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
 public:
-    .gvirtual ~CNetProtocolView();
+    virtual ~CNetProtocolView();
 
 #ifdef _DEBUG
-    .gvirtual  void    AssertValid() const;
-    .gvirtual  void    Dump(CDumpContext& dc) const;
+    virtual  void    AssertValid() const;
+    virtual  void    Dump(CDumpContext& dc) const;
 #endif
 
 
 // 生成された、メッセージ割り当て関数
 protected:
-    .gint       m_msx;
-    .gint       m_msy;
-    .gint       m_mex;
-    .gint       m_mey;
+    int       m_msx;
+    int       m_msy;
+    int       m_mex;
+    int       m_mey;
 
-    .gint       m_mpress;
-    .gint       m_dragsx;
-    .gint       m_dragsy;
-    .gint       m_dragex;
-    .gint       m_dragey;
+    int       m_mpress;
+    int       m_dragsx;
+    int       m_dragsy;
+    int       m_dragex;
+    int       m_dragey;
 
-    .gafx_msg  int    OnCreate(LPCREATESTRUCT lpcs);
-    .gafx_msg  void   OnDestroy(void);
-    .gafx_msg  void   OnDraw(CDC* pDC);
-    .gDECLARE_MESSAGE_MAP()
+    afx_msg  int    OnCreate(LPCREATESTRUCT lpcs);
+    afx_msg  void   OnDestroy(void);
+    afx_msg  void   OnDraw(CDC* pDC);
+    DECLARE_MESSAGE_MAP()
 
 public:
-    .gCFont     m_ScreenFont;
-    .gint       m_FontSizeX;
-    .gint       m_FontSizeY;
+    CFont     m_ScreenFont;
+    int       m_FontSizeX;
+    int       m_FontSizeY;
 
-    .gint       m_ScrollSizeX;
-    .gint       m_ScrollSizeY;
-    .gint       m_DocLastPos;
+    int       m_ScrollSizeX;
+    int       m_ScrollSizeY;
+    int       m_DocLastPos;
 
-    .gint       m_copysy;
-    .gint       m_copyey;
+    int       m_copysy;
+    int       m_copyey;
 
-    .gvoid      resetScrollSize(void);
-    .gvoid      setScrollPosition(CDC* pDC, CBufferRing* pBR);
-    .gvoid      clearViewDoc(void);
-    .gCString   getCopyData(void);
-    .gBOOL      OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll);
+    void      resetScrollSize(void);
+    void      setScrollPosition(CDC* pDC, CBufferRing* pBR);
+    void      clearViewDoc(void);
+    CString   getCopyData(void);
+    BOOL      OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll);
 
-    .gafx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-    .gafx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-    .gafx_msg void OnMouseMove(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+    afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 
