@@ -6,7 +6,8 @@
 #include   <Afxmt.h> 
 #include  "BufferRing.h"
 
-#define  MAXBUFFERLINE 30000
+// 最大行数
+#define  MAXBUFFERLINE 50000
 
 class  CNetProtocolView;
 class  CNetProtocolApp;
