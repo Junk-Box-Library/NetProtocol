@@ -189,20 +189,24 @@ void  CNetProtocolApp::OnEditCopy()
     if (data=="") return;
 
     HGLOBAL hMem = ::GlobalAlloc(GHND, data.GetLength());
+    if (hMem == NULL) return;
     char* pszptr = (char*)::GlobalLock(hMem);
     lstrcpy(pszptr, data);
     ::GlobalUnlock(hMem);
-
+ 
     if (!OpenClipboard(NULL)) {
         ::GlobalFree(hMem);
         return;
     }
+    if (!EmptyClipboard()) {
+        ::GlobalFree(hMem);
+        return;
+    }
+    if (SetClipboardData(CF_TEXT, hMem) == NULL) {
+        ::GlobalFree(hMem);
+    }
 
-    EmptyClipboard();
-    SetClipboardData(CF_TEXT, hMem);
     CloseClipboard();
-    ::GlobalFree(hMem);
-
     return;
 }
 
