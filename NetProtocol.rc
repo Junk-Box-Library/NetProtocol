@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 resources
+// 日本語 (日本) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-#ifdef _WIN32
 LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
 #pragma code_page(932)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +64,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\NetProtocol.ico"
+
 IDR_NetProtocolTYPE     ICON                    "res\\NetProtocolDoc.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -75,12 +75,13 @@ IDR_NetProtocolTYPE     ICON                    "res\\NetProtocolDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
 //
 
-IDR_MAINFRAME TOOLBAR  16, 15
+IDR_MAINFRAME TOOLBAR 16, 15
 BEGIN
     BUTTON      ID_LOG_SAVE
     BUTTON      ID_NET_START
@@ -100,7 +101,7 @@ END
 // Menu
 //
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "ファイル(&F)"
     BEGIN
@@ -134,7 +135,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "S",            ID_LOG_SAVE,            VIRTKEY, CONTROL
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
@@ -152,9 +153,9 @@ CAPTION "バージョン情報 NetProtocol"
 FONT 9, "MS UI Gothic", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,14,13,20,20
-    LTEXT           "NetProtocol Version 1.1",IDC_STATIC,37,13,119,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,178,6,50,16,WS_GROUP
     LTEXT           "CopyRight (C) TUIS NSL  (Fumi.Iseki and BK201)",IDC_STATIC,38,27,167,8
+    LTEXT           "NetProtocol Version 1.2.0",IDC_STATIC,37,13,119,8,SS_NOPREFIX
 END
 
 IDD_NETSETTING_DIALOG DIALOGEX 0, 0, 216, 153
@@ -221,7 +222,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -244,21 +245,32 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "NetProtocol\n\nNetProtocol\n\n\nNetProtocol.Document\nNetProtocol.Document"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "NetProtocol"
     AFX_IDS_IDLEMESSAGE     "レディ"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -268,7 +280,7 @@ BEGIN
     ID_INDICATOR_REC        "記録"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "新規にファイルを作成\n新規ファイル"
     ID_FILE_OPEN            "既存のファイルを開く\n開く"
@@ -281,13 +293,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "印刷イメージを表示\n印刷プレビュー"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "プログラム情報、バージョン、著作権を表示します。\nバージョン情報"
     ID_APP_EXIT             "アプリケーションを終了し、ファイルの保存を指示\\終了"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "指定のファイルを開く"
     ID_FILE_MRU_FILE2       "指定のファイルを開く"
@@ -307,18 +319,18 @@ BEGIN
     ID_FILE_MRU_FILE16      "指定のファイルを開く"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "次のウィンドウに切り替える\n次のペイン"
     ID_PREV_PANE            "前のウィンドウに切り替える\n前のペイン"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_SPLIT         "作業中のウィンドウを分割\n分割"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "選択範囲を消去\n消去"
     ID_EDIT_CLEAR_ALL       "すべて消去\nすべて消去"
@@ -333,13 +345,13 @@ BEGIN
     ID_EDIT_REDO            "取り消した操作をやり直す\nやり直す"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "ツール バーの 表示/非表示\nツール バーの表示切り替え"
     ID_VIEW_STATUS_BAR      "ステータス バーの 表示/非表示\nステータス バーの表示切り替え"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "ウィンドウのサイズを変更"
     AFX_IDS_SCMOVE          "ウィンドウの位置を変更"
@@ -350,18 +362,18 @@ BEGIN
     AFX_IDS_SCCLOSE         "作業中のウィンドウを閉じ、変更したファイルの保存を指示"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "ウィンドウを通常のサイズに戻す"
     AFX_IDS_SCTASKLIST      "タスク一覧をアクティブにする"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "印刷プレビュー モードの終わり\nプレビューのキャンセル"
 END
 
-#endif    // 日本語 resources
+#endif    // 日本語 (日本) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
