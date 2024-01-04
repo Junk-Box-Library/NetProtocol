@@ -6,6 +6,7 @@
 
 #include "TCP_thread.h"
 #include "NetSettingDLG.h"
+#include "WinTools.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -171,7 +172,7 @@ void  CNetProtocolApp::OnLogSave()
     if (pMainDoc->save_fname=="") return;
     int ret = pMainDoc->writeLogFile();
 
-    if (ret<0) MessageBox(m_pMainWnd->m_hWnd, "ファイルの書き込みに失敗しました", "エラー", MB_OK);
+    if (ret<0) MessageBox(m_pMainWnd->m_hWnd, _T("ファイルの書き込みに失敗しました"), _T("エラー"), MB_OK);
 }
 
 
@@ -191,7 +192,8 @@ void  CNetProtocolApp::OnEditCopy()
     HGLOBAL hMem = ::GlobalAlloc(GHND, data.GetLength());
     if (hMem == NULL) return;
     char* pszptr = (char*)::GlobalLock(hMem);
-    lstrcpy(pszptr, data);
+    //lstrcpy(pszptr, data);
+    memcpy(pszptr, data, data.GetLength());
     ::GlobalUnlock(hMem);
  
     if (!OpenClipboard(NULL)) {
@@ -226,14 +228,14 @@ void  CNetProtocolApp::Server_Start()
     if (m_state!=RELAY_STOP) return;
 
     if (m_netparam.sport<=0) {
-        MessageBox(m_pMainWnd->m_hWnd, "Server_Setart: 不正なサーバポート番号です", "エラー", MB_OK);
+        MessageBox(m_pMainWnd->m_hWnd, _T("Server_Setart: 不正なサーバポート番号です"), _T("エラー"), MB_OK);
     }
     else {
         m_netparam.ssock = tcp_server_socket_ipv4(m_netparam.sport);
         if (m_netparam.ssock<=0) {
             m_netparam.ssock = 0;
             m_state = RELAY_STOP;
-            MessageBox(m_pMainWnd->m_hWnd, "ntpl_server: サーバポートのオープンに失敗", "エラー", MB_OK);
+            MessageBox(m_pMainWnd->m_hWnd, _T("ntpl_server: サーバポートのオープンに失敗"), _T("エラー"), MB_OK);
             return;
         }
         m_state = RELAY_EXEC;
@@ -268,16 +270,18 @@ void  CNetProtocolApp::Server_Setting()
 
         if (!m_netparam.proxymode) {
             if (m_netparam.sport<=0 || m_netparam.hostname=="") {
-                MessageBox(m_pMainWnd->m_hWnd, "Server_Setting: 不正なリモートホストが指定されました", "エラー", MB_OK);
+                MessageBox(m_pMainWnd->m_hWnd, _T("Server_Setting: 不正なリモートホストが指定されました"), _T("エラー"), MB_OK);
             }
             else {
-                int cofd = tcp_client_socket((char*)(LPCSTR)(m_netparam.hostname), m_netparam.cport);
+                char* hostname = jbxwl::ts2mbs(m_netparam.hostname);
+                int cofd = tcp_client_socket(hostname, m_netparam.cport);
+                freeNull(hostname);
                 if (cofd>0) {
                     socket_close(cofd);
                     m_state = RELAY_STOP;
                 }
                 else {
-                    MessageBox(m_pMainWnd->m_hWnd, "Server_Setting: リモートホストに接続できません", "エラー", MB_OK);
+                    MessageBox(m_pMainWnd->m_hWnd, _T("Server_Setting: リモートホストに接続できません"), _T("エラー"), MB_OK);
                 }
             }
         }
@@ -293,6 +297,6 @@ void  CNetProtocolApp::Server_Setting()
 
 void  CNetProtocolApp::OnLogClear()
 {
-    int ret = MessageBox(m_pMainWnd->m_hWnd, "ログをクリアしますか？", "Log Clear", MB_YESNO | MB_ICONQUESTION);
+    int ret = MessageBox(m_pMainWnd->m_hWnd, _T("ログをクリアしますか？"), _T("Log Clear"), MB_YESNO | MB_ICONQUESTION);
     if (ret==IDYES) pMainView->clearViewDoc();
 }

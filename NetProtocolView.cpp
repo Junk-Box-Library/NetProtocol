@@ -362,7 +362,7 @@ void  CNetProtocolView::OnMouseMove(UINT nFlags, CPoint point)
 
 CString  CNetProtocolView::getCopyData(void)
 {
-    CString ret = "";
+    CString ret = _T("");
 
     CNetProtocolDoc* pdoc = GetDocument();
     if (!pdoc || !pdoc->bufferRing) return ret;

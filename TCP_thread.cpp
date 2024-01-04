@@ -7,6 +7,7 @@
 
 #include "TCP_thread.h"
 #include "NetProtocol.h"
+#include "WinTools.h"
 
 
 using namespace jbxl;
@@ -58,7 +59,9 @@ UINT  ntpl_relay(LPVOID pntprm)
         return 1;
     }
 
-    netparam.csock = tcp_client_socket((char*)(LPCSTR)(netparam.hostname), netparam.cport);
+    char* fname = jbxwl::ts2mbs(netparam.hostname);
+    netparam.csock = tcp_client_socket(fname, netparam.cport);
+    freeNull(fname);
     if (netparam.csock<=0) {
         socket_close(netparam.nsock);  
         //Sleep(1000);

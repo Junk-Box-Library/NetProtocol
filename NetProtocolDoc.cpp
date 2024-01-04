@@ -2,9 +2,10 @@
 //
 
 #include "stdafx.h"
-#include "NetProtocol.h"
 
+#include "NetProtocol.h"
 #include "NetProtocolDoc.h"
+#include "WinTools.h"
 
 
 #ifdef _DEBUG
@@ -150,7 +151,9 @@ int   CNetProtocolDoc::writeLogFile(void)
     }
     
     int size = 0;
-    FILE* fp = fopen((LPCSTR)save_fname, "wb");
+    char* fname = jbxwl::ts2mbs(save_fname);
+    FILE* fp = fopen((LPCSTR)fname, "wb");
+    freeNull(fname);
     if (fp==NULL) {
         lock.Unlock();
         return -2;
@@ -173,19 +176,19 @@ CString  CNetProtocolDoc::easyGetSaveFileName(LPCSTR title, HWND hWnd)
 {    
     OPENFILENAME  ofn;
     char fn[LNAME];
-    CString  str=""; 
+    CString  str = _T(""); 
 
     bzero(fn, LNAME);
     bzero(&ofn, sizeof(OPENFILENAME));
     ofn.lStructSize = sizeof(OPENFILENAME);
     ofn.hwndOwner = hWnd;
     ofn.Flags = 0;
-    ofn.lpstrFile = fn;
+    ofn.lpstrFile = (LPWSTR)fn;
     ofn.nMaxFile  = LNAME;
-    if (title!=NULL) ofn.lpstrTitle = title;
+    if (title!=NULL) ofn.lpstrTitle = (LPCWSTR)title;
 
     BOOL ret = GetSaveFileName(&ofn);
     if (ret) str = fn;
 
-    return fn;
+    return (LPWSTR)fn;
 }

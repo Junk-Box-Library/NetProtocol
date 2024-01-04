@@ -68,7 +68,7 @@ BOOL   NetSettingDLG::OnInitDialog()
     remoteHostEBox   = (CEdit*)GetDlgItem(IDC_EDIT_RHOST);
 
     snprintf(buf, LMNAME-1, "%d", localPort);
-    localPortEBox->SetWindowText(buf);
+    localPortEBox->SetWindowText((LPCTSTR)buf);
 
     if (proxyMode) {
         OnBnClickedRadioProxy();
@@ -92,11 +92,11 @@ void NetSettingDLG::OnOK()
     if (proxyModeCBox->GetCheck()) proxyMode = TRUE;
     else                           proxyMode = FALSE;
 
-    localPortEBox->GetWindowText(buf, LMNAME-1);
+    localPortEBox->GetWindowText((LPWSTR)buf, LMNAME-1);
     localPort = atoi(buf);
 
     if (!proxyMode) {
-        remotePortEBox->GetWindowText(buf, LMNAME-1);
+        remotePortEBox->GetWindowText((LPWSTR)buf, LMNAME-1);
         remotePort = atoi(buf);
         remoteHostEBox->GetWindowText(remoteHost);
     }
@@ -131,7 +131,7 @@ void NetSettingDLG::OnBnClickedRadioThrow()
     proxyModeCBox->SetCheck(BST_UNCHECKED);
 
     snprintf(buf, LMNAME-1, "%d", remotePort);
-    remotePortEBox->SetWindowText(buf);
+    remotePortEBox->SetWindowText((LPCTSTR)buf);
     remoteHostEBox->SetWindowText(remoteHost);
     remotePortEBox->SetReadOnly(0);
     remoteHostEBox->SetReadOnly(0);
@@ -143,8 +143,8 @@ void NetSettingDLG::OnBnClickedRadioProxy()
     throwModeCBox->SetCheck(BST_UNCHECKED);
     proxyModeCBox->SetCheck(BST_CHECKED);
 
-    remotePortEBox->SetWindowText("0");
-    remoteHostEBox->SetWindowText("");
+    remotePortEBox->SetWindowText((LPCTSTR)"0");
+    remoteHostEBox->SetWindowText((LPCTSTR)"");
     remotePortEBox->SetReadOnly();
     remoteHostEBox->SetReadOnly();
 }
