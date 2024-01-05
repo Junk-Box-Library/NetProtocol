@@ -6,6 +6,7 @@
 
 #include "NetProtocolDoc.h"
 #include "NetProtocolView.h"
+#include "WinTools.h"
 
 
 #ifdef _DEBUG
@@ -14,7 +15,7 @@
 
 
 using namespace jbxl;
-//using namespace jbxwl;
+using namespace jbxwl;
 
 
 IMPLEMENT_DYNCREATE(CNetProtocolView, CScrollView)
@@ -99,24 +100,24 @@ void CNetProtocolView::OnDraw(CDC* pDC)
         if (buf.buf==NULL) break;
 
         if (i>=m_copysy && i<=m_copyey) {
-            pDC->SetBkColor(RGB(200,200,200));
+            pDC->SetBkColor(RGB(200, 200, 200));
         }
         else {
-            pDC->SetBkColor(RGB(255,255,255));
+            pDC->SetBkColor(RGB(255, 255, 255));
         }
 
         if (buf.state==CLIENT_DATA) {
-            pDC->SetTextColor(RGB(20,20,200));
+            pDC->SetTextColor(RGB(20, 20, 200));
         }
         else if (buf.state==SERVER_DATA) {
-            pDC->SetTextColor(RGB(200,20,20));
+            pDC->SetTextColor(RGB(200, 20, 20));
         }
         else {
-            pDC->SetTextColor(RGB(0,0,0));
+            pDC->SetTextColor(RGB(0, 0, 0));
         }
 
         //if (isText_Buffer(buf)) kanji_convert_Buffer(&buf);
-        pDC->TextOut(DISPLAY_MARGIN, i*m_FontSizeY+DISPLAY_MARGIN, (LPCTSTR)buf.buf);
+        pDC->TextOut(DISPLAY_MARGIN, i*m_FontSizeY + DISPLAY_MARGIN, jbxwl::mbs2ts((char*)buf.buf));
         free_Buffer(&buf);
     }
 
@@ -184,7 +185,7 @@ void  CNetProtocolView::OnInitialUpdate()
     dc.GetTextMetrics(&tm);
 
     m_FontSizeX   = dc.GetTextExtent(CString('0', 1)).cx;        // フォントの横サイズ
-    m_FontSizeY   = tm.tmHeight + tm.tmExternalLeading;            // フォント（含行間）の縦サイズ
+    m_FontSizeY   = tm.tmHeight + tm.tmExternalLeading;          // フォント（含行間）の縦サイズ
 
     m_ScrollSizeX = m_FontSizeX + DISPLAY_MARGIN;
     m_ScrollSizeY = m_FontSizeY + DISPLAY_MARGIN;
@@ -204,7 +205,6 @@ void  CNetProtocolView::clearViewDoc()
     CNetProtocolDoc* pDoc = GetDocument();
     if (!pDoc || pDoc->bufferRing==NULL) return;
     CBufferRing* pBR = pDoc->bufferRing;
-
 
     CSingleLock lock(&(pDoc->criticalKey));
     lock.Lock();
@@ -235,7 +235,6 @@ void  CNetProtocolView::clearViewDoc()
 }
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // CNetProtocolView 印刷
 
@@ -249,7 +248,6 @@ void CNetProtocolView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
     // TODO: 印刷前の特別な初期化処理を追加してください。
 }
-
 
 
 void CNetProtocolView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
@@ -396,5 +394,3 @@ BOOL  CNetProtocolView::OnScroll(UINT nScrollCode, UINT nPos, BOOL bDoScroll)
 
     return CScrollView::OnScroll(nScrollCode, nPos, bDoScroll);
 }
-
-

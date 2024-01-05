@@ -8,7 +8,6 @@
 using namespace jbxl;
 
 
-
 CBufferRing::~CBufferRing(void)
 {
 	//DEBUG_Error("ディストラクタ：IN  CBufferRing");
@@ -17,8 +16,6 @@ CBufferRing::~CBufferRing(void)
 
 	//DEBUG_Error("ディストラクタ：OUT CBufferRing");
 }
-
-
 
 
 int  CBufferRing::init(int size)
@@ -65,8 +62,6 @@ int  CBufferRing::init(int size)
 }
 
 
-
-
 void  CBufferRing::clear()
 {
 	for (int i=0; i<maxBufSize; i++) {
@@ -80,10 +75,6 @@ void  CBufferRing::clear()
 
 	return;
 }
-
-
-
-
 
 
 void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
@@ -108,7 +99,6 @@ void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
 		DEBUG_ERROR("putBufferRing: ERROR: mismatch total data size!! %d %d", buf.vldsz, total);
 	}
 #endif
-	
 
 	// 前の行の続き
 	int pos = wPos - 1;
@@ -157,7 +147,6 @@ void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
 	if (pos>=maxBufSize) pos -= maxBufSize;
 	wPos = pos;
 
-
 	// 次のn行を空行にする．
 	if (input!=OPERATION_DATA) {
 		Buffer spbuf = rept_Buffer('=', 120);
@@ -170,7 +159,6 @@ void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
 		}
 		free_Buffer(&spbuf);
 	}
-
 
 	// コンテキストのサイズを計算
 	if (maxLineY<maxBufSize) {
@@ -191,8 +179,6 @@ void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
 }
 
 
-
-
 void  CBufferRing::rewriteBinHexBufferRing(int n, int input)
 {
 	while (n<0) n += maxBufSize;
@@ -210,15 +196,6 @@ void  CBufferRing::rewriteBinHexBufferRing(int n, int input)
 }
 
 
-
-
-
-
-
-
-
-
-
 Buffer  CBufferRing::getBufferRing(void)
 {
 	Buffer buf = make_Buffer(LBUF);
@@ -231,8 +208,6 @@ Buffer  CBufferRing::getBufferRing(void)
 
 	return buf;
 }
-
-
 
 
 Buffer  CBufferRing::getBufferRing(int pos)
@@ -249,4 +224,3 @@ Buffer  CBufferRing::getBufferRing(int pos)
 
 	return buf;
 }
-

@@ -15,7 +15,7 @@
 
 
 using namespace jbxl;
-//using namespace jbxwl;
+using namespace jbxwl;
 
 
 //tList*    Thread_List = NULL;
@@ -92,7 +92,7 @@ BOOL CNetProtocolApp::InitInstance()
     CWinApp::InitInstance();
 
     SetRegistryKey(_T("東京情報大学 NSL ネットワークアプリケーション"));
-    LoadStdProfileSettings(4);            // 標準の INI ファイルのオプションをロードします (MRU を含む)
+    LoadStdProfileSettings();            // 標準の INI ファイルのオプションをロードします (MRU を含む)
 
     CSingleDocTemplate* pDocTemplate;
     pDocTemplate = new CSingleDocTemplate(
@@ -103,6 +103,8 @@ BOOL CNetProtocolApp::InitInstance()
     if (!pDocTemplate) return FALSE;
     AddDocTemplate(pDocTemplate);
 
+    // ロケール
+    setSystemLocale();
 
     // DDE、file open など標準のシェル コマンドのコマンド ラインを解析します。
     CCommandLineInfo cmdInfo;
@@ -117,7 +119,6 @@ BOOL CNetProtocolApp::InitInstance()
     m_pMainWnd->UpdateWindow();
     // 接尾辞が存在する場合にのみ DragAcceptFiles を呼び出してください。
     //  SDI アプリケーションでは、ProcessShellCommand の直後にこの呼び出しが発生しなければなりません。
-
 
     // Frame
     pMainFrame = (CMainFrame*)m_pMainWnd;

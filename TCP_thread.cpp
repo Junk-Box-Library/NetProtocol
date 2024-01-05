@@ -1,5 +1,4 @@
 
-
 #include "stdafx.h"
 
 #include "tools++.h"
@@ -8,7 +7,6 @@
 #include "TCP_thread.h"
 #include "NetProtocol.h"
 #include "WinTools.h"
-
 
 using namespace jbxl;
 //using namespace jbxwl;
@@ -51,8 +49,6 @@ UINT  ntpl_server(LPVOID pntprm)
 }
 
 
-
-
 UINT  ntpl_relay(LPVOID pntprm)
 {
 	NetParam netparam = *(NetParam*)pntprm;
@@ -85,8 +81,6 @@ UINT  ntpl_relay(LPVOID pntprm)
 
 	return 0;
 }
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +164,6 @@ UINT  ntpl_web_proxy(LPVOID pntprm)
 		}
 		free_Buffer(&com);
 
-
 		cc = send_http_header(netparam.csock, pl, ON);
 		if (cc<len && state) {
 			Buffer buf = make_Buffer(RECVBUFSZ);
@@ -195,12 +188,6 @@ UINT  ntpl_web_proxy(LPVOID pntprm)
 
 	return 0;
 }
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -261,13 +248,11 @@ void  ntpl_tcp_relay(NetParam netparam)
 			ntm = time(NULL);
 		} while ((nd<0 || (!FD_ISSET(netparam.csock, &mask) && !FD_ISSET(netparam.nsock, &mask))) && (int)(ntm-otm)<=TIME_OUT);
 	}
-	
+
 	free_Buffer(&buf);
 
 	return;
 }
-
-
 
 
 /**
@@ -363,11 +348,7 @@ int  ntpl_www2browser_relay(NetParam netparam, int btm, int wtm, int keep)
 
 
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////
-
 
 void  ntpl_saveBuffer(Buffer buf, NetParam netparam, int input)
 {
@@ -393,9 +374,6 @@ void  ntpl_saveBuffer(Buffer buf, NetParam netparam, int input)
 
 	return;
 }
-
-
-
 
 
 void  ntpl_saveListHeader(tList* lp, NetParam netparam, int input)
@@ -428,7 +406,6 @@ void  ntpl_saveListHeader(tList* lp, NetParam netparam, int input)
 }
 
 
-
 void  ntpl_saveMessage(char* msg, NetParam netparam, int input)
 {
 	CBufferRing* pBR = netparam.pDoc->bufferRing;
@@ -459,8 +436,6 @@ void  ntpl_saveMessage(char* msg, NetParam netparam, int input)
 }
 
 
-
-
 void  ntpl_thread_stop(NetParam netparam)
 {
 	*(netparam.p_state) = RELAY_STOP;
@@ -477,8 +452,6 @@ void  ntpl_thread_stop(NetParam netparam)
 }
 
 
-
-
 tList*  find_thread(tList* list, int id)
 {
 	tList* lp = list;
@@ -489,9 +462,3 @@ tList*  find_thread(tList* list, int id)
 	}
 	return NULL;
 }
-
-
-
-
-
-
