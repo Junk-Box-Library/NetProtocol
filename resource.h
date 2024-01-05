@@ -18,6 +18,7 @@
 #define ID_LOG_SAVE                     9004
 #define ID_LOG_SAVE_AS                  9005
 #define ID_LOG_CLEAR                    9006
+#define ID_LOG_CLEAN                    9007
 
 // Next default values for new objects
 // 
