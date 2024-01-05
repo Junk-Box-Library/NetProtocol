@@ -29,7 +29,7 @@ END_MESSAGE_MAP()
 
 CNetProtocolDoc::CNetProtocolDoc()
 {
-    save_fname = "";
+    save_fname = _T("");
     pApp = NULL;
 
     bufferRing = new CBufferRing(MAXBUFFERLINE);
@@ -123,7 +123,7 @@ CNetProtocolView*  CNetProtocolDoc::GetView(void)
 
 void  CNetProtocolDoc::clear(void)
 {
-    save_fname = "";
+    save_fname = _T("");
 
     CSingleLock lock(&criticalKey);
     lock.Lock();
@@ -141,7 +141,7 @@ void  CNetProtocolDoc::clear(void)
 
 int   CNetProtocolDoc::writeLogFile(void)
 {
-    if (save_fname=="") return -1;
+    if (save_fname.IsEmpty()) return -1;
 
     CSingleLock lock(&criticalKey);
     lock.Lock();
@@ -172,23 +172,22 @@ int   CNetProtocolDoc::writeLogFile(void)
 }
 
 
-CString  CNetProtocolDoc::easyGetSaveFileName(LPCSTR title, HWND hWnd) 
+CString  CNetProtocolDoc::easyGetSaveFileName(LPCWSTR title, HWND hWnd)
 {    
-    OPENFILENAME  ofn;
-    char fn[LNAME];
-    CString  str = _T(""); 
+    OPENFILENAMEW  ofn;
+    WCHAR fn[LPATH];
 
-    bzero(fn, LNAME);
-    bzero(&ofn, sizeof(OPENFILENAME));
-    ofn.lStructSize = sizeof(OPENFILENAME);
+    bzero(fn, sizeof(fn));
+    bzero(&ofn, sizeof(ofn));
+
+    ofn.lStructSize = sizeof(ofn);
     ofn.hwndOwner = hWnd;
     ofn.Flags = 0;
-    ofn.lpstrFile = (LPWSTR)fn;
-    ofn.nMaxFile  = LNAME;
-    if (title!=NULL) ofn.lpstrTitle = (LPCWSTR)title;
+    ofn.lpstrFile = fn;
+    ofn.nMaxFile  = LNAME/sizeof(*fn);
+    ofn.lpstrTitle = title;
 
     BOOL ret = GetSaveFileName(&ofn);
-    if (ret) str = fn;
 
-    return jbxwl::mbs2ts(fn);
+    return fn;
 }

@@ -47,7 +47,7 @@ public:
     void        free(void);
     void        clear(void);
     int         writeLogFile(void);
-    CString     easyGetSaveFileName(LPCSTR title, HWND hWnd);
+    CString     easyGetSaveFileName(LPCWSTR title, HWND hWnd);
 
     void        DeleteContents(void);
     CNetProtocolView*  GetView(void);

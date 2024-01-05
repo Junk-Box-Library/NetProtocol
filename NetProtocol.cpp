@@ -45,9 +45,9 @@ CNetProtocolApp::CNetProtocolApp()
     m_server_thr = NULL;
     m_state      = RELAY_NOSET;
 
-    //m_netparam.hostname = "proxy.edu.tuis.ac.jp";
+    //m_netparam.hostname = _T("proxy.edu.tuis.ac.jp");
     //m_netparam.cport    = 8080;
-    m_netparam.hostname   = "";
+    m_netparam.hostname   = _T("");
     m_netparam.cport      = 0;
     
     m_netparam.sport      = 9100;
@@ -171,19 +171,20 @@ END_MESSAGE_MAP()
 
 void  CNetProtocolApp::OnLogSave()
 {
-    if (pMainDoc->save_fname=="") {
-        pMainDoc->save_fname = pMainDoc->easyGetSaveFileName("保存用ファイルを指定する", m_pMainWnd->m_hWnd);
+    if (pMainDoc->save_fname.IsEmpty()) {
+        pMainDoc->save_fname = pMainDoc->easyGetSaveFileName(_T("保存用ファイルを指定する"), m_pMainWnd->m_hWnd);
     }
-    if (pMainDoc->save_fname=="") return;
+    if (pMainDoc->save_fname.IsEmpty()) return;
     int ret = pMainDoc->writeLogFile();
 
     if (ret<0) MessageBox(m_pMainWnd->m_hWnd, _T("ファイルの書き込みに失敗しました"), _T("エラー"), MB_OK);
+    else MessageBox(m_pMainWnd->m_hWnd, _T("ファイル 「") + pMainDoc->save_fname + _T("」 に書き込みました"), _T("OK"), MB_OK);
 }
 
 
 void  CNetProtocolApp::OnLogSaveAs()
 {
-    pMainDoc->save_fname = "";
+    pMainDoc->save_fname = _T("");
 
     OnLogSave();
 }
@@ -192,7 +193,7 @@ void  CNetProtocolApp::OnLogSaveAs()
 void  CNetProtocolApp::OnEditCopy()
 {
     CString data = pMainView->getCopyData();
-    if (data=="") return;
+    if (data.IsEmpty()) return;
 
     HGLOBAL hMem = ::GlobalAlloc(GHND, data.GetLength());
     char* pszptr = (char*)::GlobalLock(hMem);
@@ -275,7 +276,7 @@ void  CNetProtocolApp::Server_Setting()
         m_state = RELAY_NOSET;
 
         if (!m_netparam.proxymode) {
-            if (m_netparam.sport<=0 || m_netparam.hostname=="") {
+            if (m_netparam.sport<=0 || m_netparam.hostname.IsEmpty()) {
                 MessageBox(m_pMainWnd->m_hWnd, _T("Server_Setting: 不正なリモートホストが指定されました"), _T("エラー"), MB_OK);
             }
             else {

@@ -139,7 +139,7 @@ void  CMainFrame::OnInitMenu(CMenu* pMenu)
         pMenu->EnableMenuItem(ID_NET_SETTING, MF_BYCOMMAND | MF_ENABLED);
     }
     else if (pApp->m_state==RELAY_EXEC) {    // 中継中
-        pMenu->EnableMenuItem(ID_NET_START,      MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
+        pMenu->EnableMenuItem(ID_NET_START,   MF_BYCOMMAND | MF_DISABLED | MF_GRAYED);
         pMenu->EnableMenuItem(ID_NET_STOP,    MF_BYCOMMAND | MF_ENABLED);
         pMenu->EnableMenuItem(ID_NET_SETTING, MF_BYCOMMAND | MF_DISABLED | MF_GRAYED); 
     }
