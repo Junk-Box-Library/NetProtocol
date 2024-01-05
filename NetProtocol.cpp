@@ -1,4 +1,4 @@
-﻿// NetProtocol.cpp : アプリケーションのクラス動作を定義します。
+// NetProtocol.cpp : アプリケーションのクラス動作を定義します。
 //
 
 #include "stdafx.h"

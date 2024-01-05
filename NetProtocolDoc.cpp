@@ -1,4 +1,4 @@
-﻿// NetProtocolDoc.cpp : CNetProtocolDoc クラスの実装
+// NetProtocolDoc.cpp : CNetProtocolDoc クラスの実装
 //
 
 #include "stdafx.h"

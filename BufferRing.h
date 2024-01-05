@@ -1,4 +1,4 @@
-﻿
+
 #ifndef  __BUFFER_RING_H__
 #define  __BUFFER_RING_H__
 

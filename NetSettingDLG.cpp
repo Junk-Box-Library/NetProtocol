@@ -1,4 +1,4 @@
-﻿// NetSettingDLG.cpp : 実装ファイル
+// NetSettingDLG.cpp : 実装ファイル
 //
 
 #include "stdafx.h"
@@ -143,8 +143,8 @@ void NetSettingDLG::OnBnClickedRadioProxy()
     throwModeCBox->SetCheck(BST_UNCHECKED);
     proxyModeCBox->SetCheck(BST_CHECKED);
 
-    remotePortEBox->SetWindowText((LPCTSTR)"0");
-    remoteHostEBox->SetWindowText((LPCTSTR)"");
+    remotePortEBox->SetWindowText((LPTSTR)"0");
+    remoteHostEBox->SetWindowText((LPTSTR)"");
     remotePortEBox->SetReadOnly();
     remoteHostEBox->SetReadOnly();
 }

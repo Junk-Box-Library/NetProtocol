@@ -1,4 +1,4 @@
-﻿// NetProtocol.h : NetProtocol アプリケーションのメイン ヘッダー ファイル
+// NetProtocol.h : NetProtocol アプリケーションのメイン ヘッダー ファイル
 //
 #pragma once
 

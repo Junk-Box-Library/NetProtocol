@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // NetSettingDLG ダイアログ
 
@@ -48,5 +48,6 @@ public:
     afx_msg void OnBnClickedRadioProxy();
     afx_msg void OnBnClickedRadioThrow();
     afx_msg void OnBnClickedCheckBinhexMode();
+    afx_msg void OnEnChangeEditLport();
 };
 

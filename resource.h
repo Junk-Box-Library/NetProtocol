@@ -1,6 +1,6 @@
-﻿//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by NetProtocol.rc
+//{{NO_DEPENDENCIES}}
+// Microsoft Visual C++ で生成されたインクルード ファイル。
+// NetProtocol.rc で使用
 //
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
@@ -12,14 +12,12 @@
 #define IDC_EDIT_RHOST                  1003
 #define IDC_EDIT_RPORT                  1004
 #define IDC_CHECK_BINHEX_MODE           1005
-
 #define ID_NET_START                    9001
 #define ID_NET_STOP                     9002
 #define ID_NET_SETTING                  9003
 #define ID_LOG_SAVE                     9004
 #define ID_LOG_SAVE_AS                  9005
 #define ID_LOG_CLEAR                    9006
-
 
 // Next default values for new objects
 // 

@@ -1,4 +1,4 @@
-﻿// NetProtocolDoc.h : CNetProtocolDoc クラスのインターフェイス
+// NetProtocolDoc.h : CNetProtocolDoc クラスのインターフェイス
 //
 
 #pragma once

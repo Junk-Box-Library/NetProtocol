@@ -1,4 +1,4 @@
-﻿
+
 #ifndef  __TCP_THREAD_H__
 #define  __TCP_THREAD_H__
 

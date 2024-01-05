@@ -9,6 +9,8 @@
 #include "NetProtocol.h"
 #include "WinTools.h"
 
+#include "WinSMTool.h"
+
 
 using namespace jbxl;
 //using namespace jbxwl;
@@ -58,6 +60,10 @@ UINT  ntpl_relay(LPVOID pntprm)
         socket_close(netparam.nsock);
         return 1;
     }
+
+    copy_s2Buffer("ssssssssss", jbxwl::_Debug_SHM->buf);
+    jbxwl::_Debug_SHM->put();
+
 
     char* fname = jbxwl::ts2mbs(netparam.hostname);
     netparam.csock = tcp_client_socket(fname, netparam.cport);

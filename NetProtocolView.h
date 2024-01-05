@@ -1,4 +1,4 @@
-﻿// NetProtocolView.h : CNetProtocolView クラスのインターフェイス
+// NetProtocolView.h : CNetProtocolView クラスのインターフェイス
 //
 
 #pragma once

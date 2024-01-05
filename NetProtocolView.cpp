@@ -1,4 +1,4 @@
-﻿// NetProtocolView.cpp : CNetProtocolView クラスの実装
+// NetProtocolView.cpp : CNetProtocolView クラスの実装
 //
 
 #include "stdafx.h"
