@@ -100,7 +100,6 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // CMainFrame 診断
 
@@ -232,16 +231,6 @@ void  CMainFrame::OnUpdateUiLogSave(CCmdUI* pCmdUI)
 
 void  CMainFrame::OnUpdateUiLogClear(CCmdUI* pCmdUI)
 {
-    pCmdUI->Enable(TRUE);
-    return;
-
-
-
-
-
-
-
-
     if (pApp==NULL || pApp->pMainDoc==NULL || pApp->pMainDoc->bufferRing==NULL) {
         pCmdUI->Enable(FALSE);
         return;

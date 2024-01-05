@@ -5,10 +5,12 @@
 
 #include "afxwin.h"
 
+
 #define  DISPLAY_MARGIN  5
 
 class  CNetProtocolDoc;
 class  CNetProtocolApp;
+
 
 class CNetProtocolView : public CScrollView
 {
@@ -37,7 +39,6 @@ public:
     virtual  void    AssertValid() const;
     virtual  void    Dump(CDumpContext& dc) const;
 #endif
-
 
 // 生成された、メッセージ割り当て関数
 protected:

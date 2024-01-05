@@ -44,7 +44,6 @@ UINT  ntpl_server(LPVOID pntprm)
 	}
 
 	ntpl_thread_stop(netparam);
-
 	return 0;
 }
 

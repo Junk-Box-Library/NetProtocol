@@ -307,3 +307,4 @@ void  CNetProtocolApp::OnLogClear()
     int ret = MessageBox(m_pMainWnd->m_hWnd, _T("ログをクリアしますか？"), _T("Log Clear"), MB_YESNO | MB_ICONQUESTION);
     if (ret==IDYES) pMainView->clearViewDoc();
 }
+

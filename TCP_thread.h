@@ -27,8 +27,6 @@
 #define  TIME_OUT		10
 
 
-
-
 typedef struct {
 	CString hostname;
 
@@ -47,8 +45,6 @@ typedef struct {
 	CNetProtocolDoc*  pDoc;
 	CNetProtocolView* pView;
 } NetParam;
-
-
 
 
 

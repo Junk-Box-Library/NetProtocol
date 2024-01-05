@@ -2,6 +2,7 @@
 
 // NetSettingDLG ダイアログ
 
+
 class NetSettingDLG : public CDialog
 {
     DECLARE_DYNAMIC(NetSettingDLG)
@@ -14,10 +15,8 @@ public:
 
     NetParam    GetParameter();
 
-
 // ダイアログ データ
     enum { IDD = IDD_NETSETTING_DIALOG };
-
 
 protected:
     NetParam    netparam;
