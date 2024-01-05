@@ -14,8 +14,10 @@ public:
 
     NetParam    GetParameter();
 
+
 // ダイアログ データ
     enum { IDD = IDD_NETSETTING_DIALOG };
+
 
 protected:
     NetParam    netparam;
@@ -48,6 +50,4 @@ public:
     afx_msg void OnBnClickedRadioProxy();
     afx_msg void OnBnClickedRadioThrow();
     afx_msg void OnBnClickedCheckBinhexMode();
-    afx_msg void OnEnChangeEditLport();
 };
-

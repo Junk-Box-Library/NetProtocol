@@ -4,8 +4,10 @@
 #include "stdafx.h"
 #include "NetProtocol.h"
 #include "NetSettingDLG.h"
+#include "WinTools.h"
 
 #include "TCP_thread.h"
+
 
 using namespace jbxl;
 //using namespace jbxwl;
@@ -60,15 +62,13 @@ BOOL   NetSettingDLG::OnInitDialog()
 
     throwModeCBox    = (CButton*)GetDlgItem(IDC_RADIO_THROW);
     proxyModeCBox    = (CButton*)GetDlgItem(IDC_RADIO_PROXY);
-
     binHexCBox       = (CButton*)GetDlgItem(IDC_CHECK_BINHEX_MODE);
-
     localPortEBox    = (CEdit*)GetDlgItem(IDC_EDIT_LPORT);
     remotePortEBox   = (CEdit*)GetDlgItem(IDC_EDIT_RPORT);
     remoteHostEBox   = (CEdit*)GetDlgItem(IDC_EDIT_RHOST);
 
     snprintf(buf, LMNAME-1, "%d", localPort);
-    localPortEBox->SetWindowText((LPCTSTR)buf);
+    localPortEBox->SetWindowText(jbxwl::mbs2ts(buf));
 
     if (proxyMode) {
         OnBnClickedRadioProxy();
@@ -87,17 +87,21 @@ BOOL   NetSettingDLG::OnInitDialog()
 
 void NetSettingDLG::OnOK() 
 {
-    char buf[LMNAME];
+    CString cstr;
 
     if (proxyModeCBox->GetCheck()) proxyMode = TRUE;
     else                           proxyMode = FALSE;
 
-    localPortEBox->GetWindowText((LPWSTR)buf, LMNAME-1);
+    localPortEBox->GetWindowText(cstr);
+    char* buf = jbxwl::ts2mbs(cstr);
     localPort = atoi(buf);
+    freeNull(buf);
 
     if (!proxyMode) {
-        remotePortEBox->GetWindowText((LPWSTR)buf, LMNAME-1);
+        remotePortEBox->GetWindowTextW(cstr);
+        buf = jbxwl::ts2mbs(cstr);
         remotePort = atoi(buf);
+        freeNull(buf);
         remoteHostEBox->GetWindowText(remoteHost);
     }
 
@@ -131,7 +135,7 @@ void NetSettingDLG::OnBnClickedRadioThrow()
     proxyModeCBox->SetCheck(BST_UNCHECKED);
 
     snprintf(buf, LMNAME-1, "%d", remotePort);
-    remotePortEBox->SetWindowText((LPCTSTR)buf);
+    remotePortEBox->SetWindowTextW(jbxwl::mbs2ts(buf));
     remoteHostEBox->SetWindowText(remoteHost);
     remotePortEBox->SetReadOnly(0);
     remoteHostEBox->SetReadOnly(0);
@@ -143,9 +147,8 @@ void NetSettingDLG::OnBnClickedRadioProxy()
     throwModeCBox->SetCheck(BST_UNCHECKED);
     proxyModeCBox->SetCheck(BST_CHECKED);
 
-    remotePortEBox->SetWindowText((LPTSTR)"0");
-    remoteHostEBox->SetWindowText((LPTSTR)"");
+    remotePortEBox->SetWindowText(_T("0"));
+    remoteHostEBox->SetWindowText(_T(""));
     remotePortEBox->SetReadOnly();
     remoteHostEBox->SetReadOnly();
 }
-

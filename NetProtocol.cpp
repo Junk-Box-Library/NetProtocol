@@ -2,20 +2,23 @@
 //
 
 #include "stdafx.h"
-#include "NetProtocol.h"
 
+#include "NetProtocol.h"
 #include "TCP_thread.h"
 #include "NetSettingDLG.h"
 #include "WinTools.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+
 using namespace jbxl;
 //using namespace jbxwl;
 
-//tList*   Thread_List = NULL;
+
+//tList*    Thread_List = NULL;
 
 
 // Command
@@ -100,6 +103,7 @@ BOOL CNetProtocolApp::InitInstance()
     if (!pDocTemplate) return FALSE;
     AddDocTemplate(pDocTemplate);
 
+
     // DDE、file open など標準のシェル コマンドのコマンド ラインを解析します。
     CCommandLineInfo cmdInfo;
     ParseCommandLine(cmdInfo);
@@ -113,6 +117,7 @@ BOOL CNetProtocolApp::InitInstance()
     m_pMainWnd->UpdateWindow();
     // 接尾辞が存在する場合にのみ DragAcceptFiles を呼び出してください。
     //  SDI アプリケーションでは、ProcessShellCommand の直後にこの呼び出しが発生しなければなりません。
+
 
     // Frame
     pMainFrame = (CMainFrame*)m_pMainWnd;
@@ -190,12 +195,13 @@ void  CNetProtocolApp::OnEditCopy()
     if (data=="") return;
 
     HGLOBAL hMem = ::GlobalAlloc(GHND, data.GetLength());
-    if (hMem == NULL) return;
     char* pszptr = (char*)::GlobalLock(hMem);
     //lstrcpy(pszptr, data);
-    memcpy(pszptr, data, data.GetLength());
+    char* buf = jbxwl::ts2mbs(data);
+    memcpy(pszptr, buf, data.GetLength());
+    freeNull(buf);
     ::GlobalUnlock(hMem);
- 
+
     if (!OpenClipboard(NULL)) {
         ::GlobalFree(hMem);
         return;
@@ -207,8 +213,8 @@ void  CNetProtocolApp::OnEditCopy()
     if (SetClipboardData(CF_TEXT, hMem) == NULL) {
         ::GlobalFree(hMem);
     }
-
     CloseClipboard();
+
     return;
 }
 
@@ -273,9 +279,9 @@ void  CNetProtocolApp::Server_Setting()
                 MessageBox(m_pMainWnd->m_hWnd, _T("Server_Setting: 不正なリモートホストが指定されました"), _T("エラー"), MB_OK);
             }
             else {
-                char* hostname = jbxwl::ts2mbs(m_netparam.hostname);
-                int cofd = tcp_client_socket(hostname, m_netparam.cport);
-                freeNull(hostname);
+                char* hname = jbxwl::ts2mbs(m_netparam.hostname);
+                int cofd = tcp_client_socket(hname, m_netparam.cport);
+                freeNull(hname);
                 if (cofd>0) {
                     socket_close(cofd);
                     m_state = RELAY_STOP;
