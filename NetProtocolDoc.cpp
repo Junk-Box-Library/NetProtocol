@@ -152,7 +152,7 @@ int   CNetProtocolDoc::writeLogFile(void)
     
     int size = 0;
     char* fname = jbxwl::ts2mbs(save_fname);
-    FILE* fp = fopen((LPCSTR)fname, "wb");
+    FILE* fp = fopen(fname, "wb");
     freeNull(fname);
     if (fp==NULL) {
         lock.Unlock();
@@ -190,5 +190,5 @@ CString  CNetProtocolDoc::easyGetSaveFileName(LPCSTR title, HWND hWnd)
     BOOL ret = GetSaveFileName(&ofn);
     if (ret) str = fn;
 
-    return (LPWSTR)fn;
+    return jbxwl::mbs2ts(fn);
 }

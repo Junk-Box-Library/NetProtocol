@@ -367,7 +367,7 @@ CString  CNetProtocolView::getCopyData(void)
     CBufferRing* pBR = pdoc->bufferRing;
 
     for (int i=m_copysy; i<=m_copyey; i++) {
-        ret = ret + (LPCTSTR)(pBR->pBuf[i].buf);
+        ret = ret + jbxwl::mbs2ts((char*)pBR->pBuf[i].buf);
     }
 
     return ret;
