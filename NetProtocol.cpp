@@ -7,6 +7,7 @@
 #include "TCP_thread.h"
 #include "NetSettingDLG.h"
 #include "WinTools.h"
+#include "ExClass.h"
 
 
 #ifdef _DEBUG
@@ -103,7 +104,8 @@ BOOL CNetProtocolApp::InitInstance()
     AddDocTemplate(pDocTemplate);
 
     // ロケール
-    setSystemLocale();
+    //setSystemLocale(); // SJIS ?
+    setlocale(LC_ALL, ".UTF8");
 
     // DDE、file open など標準のシェル コマンドのコマンド ラインを解析します。
     CCommandLineInfo cmdInfo;
@@ -172,7 +174,7 @@ END_MESSAGE_MAP()
 void  CNetProtocolApp::OnLogSave()
 {
     if (pMainDoc->save_fname.IsEmpty()) {
-        pMainDoc->save_fname = pMainDoc->easyGetSaveFileName(_T("保存用ファイルを指定する"), m_pMainWnd->m_hWnd);
+        pMainDoc->save_fname = jbxwl::EasyGetSaveFileName(_T("保存用ファイルを指定する"), NULL, m_pMainWnd->m_hWnd);
     }
     if (pMainDoc->save_fname.IsEmpty()) return;
     int ret = pMainDoc->writeLogFile();
@@ -194,30 +196,8 @@ void  CNetProtocolApp::OnEditCopy()
 {
     CString data = pMainView->getCopyData();
     if (data.IsEmpty()) return;
-    
-    HGLOBAL hMem = ::GlobalAlloc(GHND, CStringA(data).GetLength());
-    char* pszptr = (char*)::GlobalLock(hMem);
-
-#ifdef _UNICODE
-    memcpy(pszptr, CStringA(data).GetBuffer(), CStringA(data).GetLength());
-#else 
-    lstrcpy(pszptr, data);
-#endif
-
-    ::GlobalUnlock(hMem);
-
-    if (!OpenClipboard(NULL)) {
-        ::GlobalFree(hMem);
-        return;
-    }
-    if (!EmptyClipboard()) {
-        ::GlobalFree(hMem);
-        return;
-    }
-    if (SetClipboardData(CF_TEXT, hMem) == NULL) {
-        ::GlobalFree(hMem);
-    }
-    CloseClipboard();
+  
+    jbxwl::SaveToClipboard_byStr(data);
 
     return;
 }

@@ -48,12 +48,6 @@ public:
     void        clear(void);
     int         writeLogFile(void);
 
-#ifdef _UNICODE
-    CString     easyGetSaveFileName(LPCWSTR title, HWND hWnd);
-#else
-    CString     easyGetSaveFileName(LPCSTR title, HWND hWnd);
-#endif
-
     void        DeleteContents(void);
     CNetProtocolView*  GetView(void);
 };
