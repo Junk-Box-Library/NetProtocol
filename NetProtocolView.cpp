@@ -117,6 +117,7 @@ void CNetProtocolView::OnDraw(CDC* pDC)
         }
 
         //if (isText_Buffer(buf)) kanji_convert_Buffer(&buf);
+        // 出力
         pDC->TextOut(DISPLAY_MARGIN, i*m_FontSizeY + DISPLAY_MARGIN, jbxwl::mbs2ts((char*)buf.buf));
         free_Buffer(&buf);
     }

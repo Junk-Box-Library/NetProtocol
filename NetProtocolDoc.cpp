@@ -184,10 +184,9 @@ CString  CNetProtocolDoc::easyGetSaveFileName(LPCWSTR title, HWND hWnd)
     ofn.hwndOwner = hWnd;
     ofn.Flags = 0;
     ofn.lpstrFile = fn;
-    ofn.nMaxFile  = LNAME/sizeof(*fn);
+    ofn.nMaxFile  = LPATH;
     ofn.lpstrTitle = title;
 
-    BOOL ret = GetSaveFileName(&ofn);
-
+    GetSaveFileName(&ofn);
     return fn;
 }
