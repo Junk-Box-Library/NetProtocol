@@ -194,13 +194,16 @@ void  CNetProtocolApp::OnEditCopy()
 {
     CString data = pMainView->getCopyData();
     if (data.IsEmpty()) return;
-
-    HGLOBAL hMem = ::GlobalAlloc(GHND, data.GetLength());
+    
+    HGLOBAL hMem = ::GlobalAlloc(GHND, CStringA(data).GetLength());
     char* pszptr = (char*)::GlobalLock(hMem);
-    //lstrcpy(pszptr, data);
-    char* buf = jbxwl::ts2mbs(data);
-    memcpy(pszptr, buf, data.GetLength());
-    freeNull(buf);
+
+#ifdef _UNICODE
+    memcpy(pszptr, CStringA(data).GetBuffer(), CStringA(data).GetLength());
+#else 
+    lstrcpy(pszptr, data);
+#endif
+
     ::GlobalUnlock(hMem);
 
     if (!OpenClipboard(NULL)) {

@@ -98,7 +98,7 @@ void NetSettingDLG::OnOK()
     freeNull(buf);
 
     if (!proxyMode) {
-        remotePortEBox->GetWindowTextW(cstr);
+        remotePortEBox->GetWindowText(cstr);
         buf = jbxwl::ts2mbs(cstr);
         remotePort = atoi(buf);
         freeNull(buf);
@@ -135,7 +135,7 @@ void NetSettingDLG::OnBnClickedRadioThrow()
     proxyModeCBox->SetCheck(BST_UNCHECKED);
 
     snprintf(buf, LMNAME-1, "%d", remotePort);
-    remotePortEBox->SetWindowTextW(jbxwl::mbs2ts(buf));
+    remotePortEBox->SetWindowText(jbxwl::mbs2ts(buf));
     remoteHostEBox->SetWindowText(remoteHost);
     remotePortEBox->SetReadOnly(0);
     remoteHostEBox->SetReadOnly(0);

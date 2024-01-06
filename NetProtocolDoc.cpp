@@ -172,8 +172,9 @@ int   CNetProtocolDoc::writeLogFile(void)
 }
 
 
+#ifdef _UNICODE
 CString  CNetProtocolDoc::easyGetSaveFileName(LPCWSTR title, HWND hWnd)
-{    
+{
     OPENFILENAMEW  ofn;
     WCHAR fn[LPATH];
 
@@ -184,9 +185,31 @@ CString  CNetProtocolDoc::easyGetSaveFileName(LPCWSTR title, HWND hWnd)
     ofn.hwndOwner = hWnd;
     ofn.Flags = 0;
     ofn.lpstrFile = fn;
-    ofn.nMaxFile  = LPATH;
+    ofn.nMaxFile = LPATH;
     ofn.lpstrTitle = title;
 
     GetSaveFileName(&ofn);
     return fn;
 }
+
+#else
+
+CString  CNetProtocolDoc::easyGetSaveFileName(LPCSTR title, HWND hWnd)
+{
+    OPENFILENAME  ofn;
+    char fn[LNAME];
+
+    bzero(fn, LNAME);
+    bzero(&ofn, sizeof(ofn));
+
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = hWnd;
+    ofn.Flags = 0;
+    ofn.lpstrFile = fn;
+    ofn.nMaxFile = LNAME;
+    if (title != NULL) ofn.lpstrTitle = title;
+
+    return fn;
+}
+
+#endif

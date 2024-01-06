@@ -53,3 +53,5 @@ public:
 
 extern CNetProtocolApp theApp;
 
+
+Buffer  utf8_to_sjis(CString buf_utf8);
