@@ -219,7 +219,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>JunkBox_Lib++.lib;JunkBox_Win_Lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>JunkBox_Lib++.lib;JunkBox_Win_Lib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\JunkBox_Lib++\Release64;..\zlib-1.3\x64\Release;..\JunkBox_Win_Lib\Release64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>

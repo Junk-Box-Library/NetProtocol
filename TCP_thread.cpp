@@ -24,7 +24,7 @@ UINT  ntpl_server(LPVOID pntprm)
 
 	while (*(netparam.p_state)==RELAY_EXEC) {
         cdlen = sizeof(cl_addr);
-		sofd = accept(netparam.ssock, (struct sockaddr*)&cl_addr, (socklen_t*)&cdlen);
+		sofd = (int)accept(netparam.ssock, (struct sockaddr*)&cl_addr, (socklen_t*)&cdlen);
 		if (sofd>0) {
 
 			netparam.nsock = sofd;
