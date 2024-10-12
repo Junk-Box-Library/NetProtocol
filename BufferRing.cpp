@@ -90,7 +90,7 @@ void  CBufferRing::putBufferRing(Buffer buf, int input, int kind)
 
 #ifdef DEBUG
     int total = 0;
-    for (i=0; i<dim->state; i++) {
+    for (i=0; i<dim->state; i++) { 
         total += dim[i].vldsz;
     }
     if (buf.vldsz!=total) {

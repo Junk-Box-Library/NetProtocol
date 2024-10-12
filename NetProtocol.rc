@@ -152,7 +152,7 @@ CAPTION "ÉoÅ[ÉWÉáÉìèÓïÒ NetProtocol"
 FONT 9, "MS UI Gothic", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,14,13,20,20
-    LTEXT           "NetProtocol Version 1.2.0",IDC_STATIC,37,13,119,8,SS_NOPREFIX
+    LTEXT           "NetProtocol Version 1.2.1",IDC_STATIC,37,13,119,8,SS_NOPREFIX
     DEFPUSHBUTTON   "OK",IDOK,178,6,50,16,WS_GROUP
     LTEXT           "CopyRight (C) TUIS NSL  (Fumi.Iseki and BK201)",IDC_STATIC,38,27,167,8
 END

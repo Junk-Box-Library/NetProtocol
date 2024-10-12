@@ -157,8 +157,8 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>JunkBox_Lib++.lib;JunkBox_Win_Lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\JunkBox_Lib++\Debug64;..\zlib-1.3\x64\Debug;..\JunkBox_Win_Lib\Debug64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>JunkBox_Lib++.lib;JunkBox_Win_Lib.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\JunkBox_Lib++\Debug64;..\zlib-1.3\lib;..\JunkBox_Win_Lib\Debug64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
@@ -220,7 +220,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalDependencies>JunkBox_Lib++.lib;JunkBox_Win_Lib.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\JunkBox_Lib++\Release64;..\zlib-1.3\x64\Release;..\JunkBox_Win_Lib\Release64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\JunkBox_Lib++\Release64;..\zlib-1.3\lib;..\JunkBox_Win_Lib\Release64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>

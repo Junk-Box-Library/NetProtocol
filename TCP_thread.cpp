@@ -22,6 +22,7 @@ UINT  ntpl_server(LPVOID pntprm)
 
 	NetParam netparam = *(NetParam*)pntprm;
 
+
 	while (*(netparam.p_state)==RELAY_EXEC) {
         cdlen = sizeof(cl_addr);
 		sofd = (int)accept(netparam.ssock, (struct sockaddr*)&cl_addr, (socklen_t*)&cdlen);
@@ -42,8 +43,8 @@ UINT  ntpl_server(LPVOID pntprm)
 			//}
 		}
 	}
-
 	ntpl_thread_stop(netparam);
+
 	return 0;
 }
 
@@ -69,7 +70,6 @@ UINT  ntpl_relay(LPVOID pntprm)
 		//if (lp!=NULL) del_tList_node(lp);
 		return 1;
 	}
-
 	ntpl_tcp_relay(netparam);
 	
 	socket_close(netparam.csock);
@@ -201,7 +201,6 @@ void  ntpl_tcp_relay(NetParam netparam)
 
 	buf = make_Buffer(RECVBUFSZ);
 	nm  = Max(netparam.nsock, netparam.csock);
-
 	otm = time(NULL);
 	do {
 		timeout.tv_sec  = TIME_OUT;
@@ -214,7 +213,7 @@ void  ntpl_tcp_relay(NetParam netparam)
 	} while ((nd<0 || (!FD_ISSET(netparam.csock, &mask) && !FD_ISSET(netparam.nsock, &mask))) && (int)(ntm-otm)<=TIME_OUT);
 
 	while((FD_ISSET(netparam.csock, &mask) || FD_ISSET(netparam.nsock, &mask)) && *(netparam.p_state)==RELAY_EXEC) {
-        if (FD_ISSET(netparam.csock, &mask)) {
+		if (FD_ISSET(netparam.csock, &mask)) {
             cc = tcp_recv_Buffer(netparam.csock, &buf);
             if (cc>0) {
 				//DEBUG_Error("%s", buf.buf);
@@ -247,7 +246,6 @@ void  ntpl_tcp_relay(NetParam netparam)
 			ntm = time(NULL);
 		} while ((nd<0 || (!FD_ISSET(netparam.csock, &mask) && !FD_ISSET(netparam.nsock, &mask))) && (int)(ntm-otm)<=TIME_OUT);
 	}
-
 	free_Buffer(&buf);
 
 	return;
@@ -361,7 +359,7 @@ void  ntpl_saveBuffer(Buffer buf, NetParam netparam, int input)
 		lock.Lock();
 	}
 	pBR->putBufferRing(buf, input, BINHEX_DATA);
-	
+
 	int lastPos = pBR->getLastPosition();
 	//if (netparam.binhexmode && pBR->getKindData(lastPos - 1) == BINARY_DATA) {
 	if (netparam.binhexmode) {
